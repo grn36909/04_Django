@@ -34,7 +34,7 @@ mysite
 
 > django-admin startproject mysite  
 
-'mysite'为项目名称
+`mysite`为项目名称
 
 ### 2. 新建应用(App)
 
@@ -42,19 +42,19 @@ mysite
 
 > python manage.py startapp learn    
 
-'learn'为应用名称
+`learn`为应用名称
 
 #### 2.1 添加App到应用列表中
 
-修改 'mysite/mysite/settings.py' 将新定义的app加到settings.py中的INSTALL_APPS中  
+修改 `mysite/mysite/settings.py` 将新定义的app加到settings.py中的INSTALL_APPS中  
 
 #### 2.2 定义视图函数
 
-修改 'mysite/learn/views.py' 添加 index() 函数
+修改 `mysite/learn/views.py` 添加 index() 函数
 
 #### 2.3 定义视图函数相关的URL
 
-修改 'mysite/mysite/urls.py' 将网址与函数关联
+修改 `mysite/mysite/urls.py` 将网址与函数关联
 
 #### 2.4 运行项目
 
