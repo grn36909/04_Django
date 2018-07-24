@@ -2,7 +2,7 @@
 
 参考资源: by ziqiangxuetang.com
 
-## EB04 Django 模板
+## EB04 Django 模板 (tempplate)
 ----
 
 [Learn-URL](https://code.ziqiangxuetang.com/django/django-template.html)  
