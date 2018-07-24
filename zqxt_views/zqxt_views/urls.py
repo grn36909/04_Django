@@ -19,5 +19,6 @@ from calc import views as calc_views                # 导入calc应用中的view
 
 urlpatterns = [
     url(r'^add/$', calc_views.add, name='add'),     # 添加calc_views中的add()函数, 对应URL为^add/$
+    url(r'^add/(\d+)/(\d+)/$', calc_views.add2, name='add2'),   # (\d+) = 一个或多个数字
     url(r'^admin/', admin.site.urls),
 ]
