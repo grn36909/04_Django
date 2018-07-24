@@ -23,7 +23,7 @@
 在 'zqxt_views/calc/' 内新建 'templates' 文件夹  
 在 'templates' 内新建 'home.html' 文件并修改文件
 
-### 3. 通过 reverse() 来获取对应的网址(活链接)
+### 3. 通过 reverse() 来获取对应的网址(重定向)
 
 修改 `zqxt_views/manage.py` 导入 reverse() 函数  
 
@@ -31,30 +31,14 @@
 
 修改 `zqxt_views/calc/views.py` 添加URL转换函数 old_add2_redirect()  
 
+修改 `zqxt_views/zqxt_views/urls.py` 添加新的URL
 
-
-
-
-
-### 1.3 运行项目
+### 4. 运行项目
 
 在命令行中输入:  
 
-> python manage.py runserver 8002  
-
-默认端口是 `8000`，上面使用了自定义端口 `8002`  
-如果提示 `Error: That port is already in use.`   
-我们可以在后面加上端口号`8001`，`8888`等  
+> python manage.py runserver 8002
 
 在浏览器中访问:  
-> http://127.0.0.1:8002/add/?a=4&b=5  
 
-
-### 2.采用 `/add/3/4/` 这样的网址的方式
-
-修改 `zqxt_views/calc/views.py` 添加视图函数 add2()  
-
-修改 `zqxt_views/urls.py` 添加新的 url  
-
-在浏览器中访问:
->  http://127.0.0.1:8002/add/4/5/  
+> http://127.0.0.1:8002  
