@@ -29,7 +29,7 @@ zqxt_tmpl 为项目名称, learn为应用名称
 
 修改 `home.html` 文件的内容
 
-修改 zqxt_views/zqxt_views/urls.py 添加新的URL
+修改 `zqxt_views/zqxt_views/urls.py` 添加新的URL
 
 ### 3. 创建数据库表
 
