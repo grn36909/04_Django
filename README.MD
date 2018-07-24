@@ -2,36 +2,41 @@
 
 参考资源: by ziqiangxuetang.com
 
-## EB03 Django URL name详解
+## EB04 Django 模板
 ----
 
-[Learn-URL](https://code.ziqiangxuetang.com/django/django-url-name.html)  
+[Learn-URL](https://code.ziqiangxuetang.com/django/django-template.html)  
 
 准备工作:
 开启命令行并进入工程所在路径
 
-### 1. 修改文件
+### 1. 新建项目(Project)和应用(App)
+在命令行中输入:
 
-修改 `zqxt_views/calc/views.py` 添加视图函数 index()  
+django-admin startproject zqxt_tmpl
+cd zqxt_tmpl
+python manage.py startapp learn
 
-修改 `zqxt_views/zqxt_views/settings.py`  将App添加到列表中  
+zqxt_tmpl 为项目名称, learn为应用名称
 
-修改 `zqxt_views/zqxt_views/urls.py` 添加新的URL
+### 2. 修改文件
 
-### 2. 建立html文件
+修改 `zqxt_tmpl/zqxt_tmpl/settings.py`  将App添加到列表中  
 
-在 'zqxt_views/calc/' 内新建 'templates' 文件夹  
-在 'templates' 内新建 'home.html' 文件并修改文件
+修改 `zqxt_tmpl/learn/views.py` 添加视图函数 index()  
 
-### 3. 通过 reverse() 来获取对应的网址(重定向)
+在 `learn`目录下新建一个 `templates` 文件夹，里面新建一个 `home.html`  
 
-修改 `zqxt_views/manage.py` 导入 reverse() 函数  
+修改 `home.html` 文件的内容
 
-> from django.urls import reverse  
+修改 zqxt_views/zqxt_views/urls.py 添加新的URL
 
-修改 `zqxt_views/calc/views.py` 添加URL转换函数 old_add2_redirect()  
+### 3. 创建数据库表
 
-修改 `zqxt_views/zqxt_views/urls.py` 添加新的URL
+注意本节并未使用该功能, 此操作仅用于去除运行时的提示信息(提示要创建数据库等等)  
+
+在命令行中输入:
+> python manage.py migrate  
 
 ### 4. 运行项目
 
@@ -42,3 +47,5 @@
 在浏览器中访问:  
 
 > http://127.0.0.1:8002  
+
+模板中的一些循环，条件判断，标签，过滤器等使用请看下一节的内容。  
