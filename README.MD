@@ -1,4 +1,3 @@
-# Temp
 # Django 基础学习 
 
 参考资源: by ziqiangxuetang.com
