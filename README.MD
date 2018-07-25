@@ -2,7 +2,7 @@
 
 参考资源: by ziqiangxuetang.com
 
-## EB06 QuerySet API
+## EB07 QuerySet API
 ----
 
 [Learn-URL](https://code.ziqiangxuetang.com/django/django-models.html)  
