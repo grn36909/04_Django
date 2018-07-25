@@ -1,17 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>TITLE - HOME</title>
-</head>
-<body>
+<a href="/">STRING 演示</a><br>
+<a href="/for/">FOR 和 LIST 演示</a><br>
+<a href="/dict/">DICT 演示</a><br>
+<a href="/list/">LIST 和 IF 演示</a><br>
+<br>
 
-{% extends 'base.html' %}
- 
-{% block title %}欢迎光临首页{% endblock %}
- 
-{% block content %}
-这里是首页，欢迎光临
-{% endblock %}
+request.path = "{{ request.path }}"<br>
+request.GET.urlencode = "{{ request.GET.urlencode }}"<br>
+<a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a><br>
+<br>
 
-</body>
-</html>
+{% if key == 'text' %}
+    <ul>{{ string }}</ul><BR>
+    <li>{{ info }}</li><BR>
+{% endif %}
+
+{% if key == 'for' %}
+    {{ TutorialInfo }}<BR>
+    {% for i in TutorialList %}
+        {{ i }}<BR>
+    {% endfor %}
+{% endif %}
+
+{% if key == 'dict' %}
+    <li>站点:</li>
+    {{ info_dict.site }}
+    <BR>
+    <li>内容:</li>
+    {{ info_dict.content }}
+    <BR>
+{% endif %}
+
+{% if key == 'list' %}
+    {% for item in List %}
+        {{ item }}
+        {% if not forloop.last %},{% endif %} 
+    {% empty %}
+        抱歉，列表为空
+    {% endfor %}
+{% endif %}
