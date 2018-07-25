@@ -1,100 +1,87 @@
+# Temp
 # Django 基础学习 
 
 参考资源: by ziqiangxuetang.com
 
-## EB05 Django 模板进阶(template2)
+## EB06 Django 模型（数据库）
 ----
 
-[Learn-URL](https://code.ziqiangxuetang.com/django/django-template2.html)  
+[Learn-URL](https://code.ziqiangxuetang.com/django/django-models.html)  
 
-Django模板中的循环，条件判断，常用的标签，过滤器的使用  
+Django 模型是与数据库相关的，  
+与数据库相关的代码一般写在 `models.py` 中，  
+Django 支持 `sqlite3`, `MySQL`, `PostgreSQL`等数据库，  
+只需要在 `settings.py` 中配置即可，  
+不用更改 `models.py` 中的代码，丰富的API极大的方便了使用。  
 
-- 列表，字典，类的实例的使用
-- 循环：迭代显示列表，字典等中的内容
-- 条件判断：判断是否显示该内容，比如判断是手机访问，还是电脑访问，给出不一样的代码。
-- 标签：for，if 这样的功能都是标签。
-- 过滤器：管道符号后面的功能，比如{{ var|length }}，求变量长度的 length 就是一个过滤器。
+准备工作:  
+开启命令行并进入工程所在路径  
 
-准备工作:
-使用 EB04 的项目和应用
-开启命令行并进入工程所在路径
+### 1. 新建项目(Project)和应用(App)
 
-### 1. 显示一个基本的字符串在网页上
+在命令行中输入:
 
-修改 `zqxt_tmpl/learn/views.py` 添加视图函数 home_text()
+> django-admin.py startproject learn_models     # 新建一个项目'learn_models'  
+> cd learn_models                               # 进入到该项目的文件夹  
+> django-admin.py startapp people               # 新建一个应用'people'  
 
-修改 `zqxt_tmpl/zqxt_tmpl/urls.py`  将视图对应到 url
+### 2. 修改文件
 
-修改 `home.html` 文件的内容
+修改 `learn_models/learn_models/settings.py` 将App添加到列表中  
 
-在命令行中输入:  
+修改 `learn_models/people/models.py` 添加`Person`类  
 
-> python manage.py runserver 8002
+### 3. 创建数据表
 
-在浏览器中访问:  
+先进入 `manage.py` 文件所在路径, 并在命令行输入:  
 
-> http://127.0.0.1:8002  
+> python manage.py makemigrations  
+> python manage.py migrate  
 
-### 2. 讲解了基本的 `for` 循环 和 `List` 内容的显示
+### 4. 使用 Django 提供的 QuerySet API
 
-修改 `zqxt_tmpl/learn/views.py` 添加视图函数 home_for()
+**新建一个对象的方法有以下几种**：
 
-修改 `zqxt_tmpl/zqxt_tmpl/urls.py`  将视图对应到 url
+1.  > Person.objects.create(name=name,age=age)  
 
-修改 `home.html` 文件的内容
+2.  > p = Person(name="WZ", age=23)`  
+    > p.save()  
 
-在命令行中输入:  
+3.  > p = Person(name="TWZ")  
+    > p.age = 23
+    > p.save()
 
-> python manage.py runserver 8002
+4.  > Person.objects.get_or_create(name="WZT", age=23)
 
-在浏览器中访问:  
+    这种方法是防止重复很好的方法，但是速度要相对慢些。  
+    返回一个元组，第一个为`Person`对象，第二个为`True`或`False`, 新建时返回的是`True`, 已经存在时返回`False`.  
 
-> http://127.0.0.1:8002/for  
+**获取对象有以下方法：**
 
-### 3. 显示字典中内容
+1.    > Person.objects.all()  
 
-修改 `zqxt_tmpl/learn/views.py` 添加视图函数 home_dict()
+2.    > Person.objects.all()[:10]  
 
-修改 `zqxt_tmpl/zqxt_tmpl/urls.py`  将视图对应到 url
+    切片操作，获取10个人，不支持负索引，切片可以节约内存  
 
-修改 `home.html` 文件的内容
+3.    > Person.objects.get(name=name)  
 
-在命令行中输入:  
+    get是用来获取一个对象的，如果需要获取满足条件的一些人，就要用到filter  
 
-> python manage.py runserver 8002
+4.    > Person.objects.filter(name="abc")  # 等于Person.objects.filter(name__exact="abc") 名称严格等于 "abc" 的人  
 
-在浏览器中访问:  
+5.    > Person.objects.filter(name__iexact="abc")  # 名称为 abc 但是不区分大小写，可以找到 ABC, Abc, aBC，这些都符合条件  
 
-> http://127.0.0.1:8002/dict 
+6.    > Person.objects.filter(name__contains="abc")  # 名称中包含 "abc"的人  
 
-### 4. 在模板进行 条件判断和 for 循环的详细操作
+7.    > Person.objects.filter(name__icontains="abc")  #名称中包含 "abc"，且abc不区分大小写  
 
-修改 `zqxt_tmpl/learn/views.py` 添加视图函数 home_list()
+8.    > Person.objects.filter(name__regex="^abc")  # 正则表达式查询  
 
-修改 `zqxt_tmpl/zqxt_tmpl/urls.py`  将视图对应到 url
+9.    > Person.objects.filter(name__iregex="^abc")  # 正则表达式, 不区分大小写  
 
-修改 `home.html` 文件的内容
+    filter是找出满足条件的，当然也有排除符合某条件的  
 
-在命令行中输入:  
+10.  > Person.objects.exclude(name__contains="WZ")  # 排除包含 WZ 的Person对象  
 
-> python manage.py runserver 8002
-
-在浏览器中访问:  
-
-> http://127.0.0.1:8002/list
-
-for 循环可用的相关变量
-
-| 变量 | 描述 |
-| ---- | ---- |
-| forloop.counter | 索引从 1 开始算 |
-| forloop.counter0 | 索引从 0 开始算 |
-| forloop.revcounter | 索引从最大长度到 1 |
-| forloop.revcounter0 | 索引从最大长度到 0 |
-| forloop.first | 当遍历的元素为第一项时为真 |
-| forloop.last | 当遍历的元素为最后一项时为真 |
-| forloop.parentloop | 用在嵌套的 for 循环中，获取上一层 for 循环的 forloop |
-
-- 获取当前用户  {{ request.user }}  
-- 获取当前网址  {{ request.path }}  
-- 获取当前 GET 参数  {{ request.GET.urlencode }}  
+11.  > Person.objects.filter(name__contains="abc").exclude(age=23)  # 找出名称含有abc, 但是排除年龄是23岁的  
