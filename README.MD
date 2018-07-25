@@ -95,6 +95,6 @@ for 循环可用的相关变量
 | forloop.last | 当遍历的元素为最后一项时为真 |
 | forloop.parentloop | 用在嵌套的 for 循环中，获取上一层 for 循环的 forloop |
 
-获取当前用户  {{ request.user }}  
-获取当前网址  {{ request.path }}  
-获取当前 GET 参数  {{ request.GET.urlencode }}  
+- 获取当前用户  {{ request.user }}  
+- 获取当前网址  {{ request.path }}  
+- 获取当前 GET 参数  {{ request.GET.urlencode }}  
