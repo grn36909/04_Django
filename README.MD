@@ -7,8 +7,8 @@
 
 [Learn-URL](https://code.ziqiangxuetang.com/django/django-views-urls2.html)  
 
-准备工作:
-开启命令行并进入工程所在路径
+准备工作:  
+开启命令行并进入工程所在路径  
 
 ### 1. 采用 `/add/?a=4&b=5` 这样GET方法进行
 
@@ -16,11 +16,11 @@
 
 在命令行中输入:  
 
-> django-admin startproject zqxt_views
-> cd zqxt_views
-> python manage.py startapp calc 
+> django-admin startproject zqxt_views  
+> cd zqxt_views  
+> python manage.py startapp calc  
 
-`mysite`为项目名称
+`mysite`为项目名称  
 
 ### 1.2 修改文件
 
@@ -48,5 +48,5 @@
 
 修改 `zqxt_views/urls.py` 添加新的 url  
 
-在浏览器中访问:
+在浏览器中访问:  
 >  http://127.0.0.1:8002/add/4/5/  
