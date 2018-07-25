@@ -33,12 +33,35 @@ Django 支持 `sqlite3`, `MySQL`, `PostgreSQL`等数据库，
 
 ### 3. 创建数据表
 
-先进入 `manage.py` 文件所在路径, 并在命令行输入:  
+进入 `manage.py` 文件所在路径, 并在命令行输入:  
 
 > python manage.py makemigrations  
 > python manage.py migrate  
 
 ### 4. 使用 Django 提供的 QuerySet API
+
+进入 `manage.py` 文件所在路径, 并在命令行输入:  
+
+> python manage.py shell  
+
+在 shell 中输入下面的代码：  
+
+> from people.models import Person  
+> Person.objects.create(name="grn31", age=24)  
+
+返回结果：  
+
+> <Person: grn31>  
+
+在 shell 中输入下面的代码：  
+
+> Person.objects.get(name="grn31")  
+
+返回结果：  
+
+> <Person: grn31>  
+
+----
 
 **新建一个对象的方法有以下几种**：
 
