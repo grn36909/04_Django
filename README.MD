@@ -2,7 +2,7 @@
 
 参考资源: by ziqiangxuetang.com
 
-## EB08 QuerySet 进阶
+## EB09 自定义Field
 ----
 
-[Learn-URL](https://code.ziqiangxuetang.com/django/django-queryset-advance.html)  
+[Learn-URL](https://code.ziqiangxuetang.com/django/django-custom-field.html)  
